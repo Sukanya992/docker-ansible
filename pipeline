@@ -9,7 +9,7 @@ pipeline {
                     ansiblePlaybook(
                         playbook: "playbook.yaml",
                         inventory: "inventory.ini",
-                        extras: "--private_key=$ANSIBLE_PRIVATE_KEY -u jenkins"
+                        extras: "--private-key=$ANSIBLE_PRIVATE_KEY -u jenkins"
                     )
                 }
             }
