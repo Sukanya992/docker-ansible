@@ -1,0 +1,18 @@
+pipeline {
+    agent any 
+        environment {
+            ANSIBLE_PRIVATE_KEY=credentials('ansible')
+        }
+        stages {
+            stage ("Run playbook"){
+                steps {
+                    ansiblePlaybook{
+                        playbook: "playbook.yaml"
+                        inventory: "inventory.ini"
+                        extra: "--private_key=$ANSIBLE_PRIVATE_KEY -u jenkins"
+                    }
+                }
+            }
+            
+        }
+    }
