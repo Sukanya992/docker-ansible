@@ -1,3 +1,4 @@
+---
 - hosts: flask-docker
   become: yes
   tasks:
