@@ -3,15 +3,9 @@
   tasks:
     - name: Install Docker
       yum:
-        name: docker.io
+        name: docker
         state: present
         update_cache: yes
-        
-    - name: Install Docker Compose
-      yum:
-        name: docker-compose
-        state: present
-        
     - name: Start Docker Service
       service:
         name: docker
