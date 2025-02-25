@@ -1,18 +1,42 @@
 pipeline {
-    agent any 
-        environment {
-            ANSIBLE_PRIVATE_KEY=credentials('ansible')
-        }
-        stages {
-            stage ("Run playbook"){
-                steps {
-                    ansiblePlaybook(
-                        playbook: "playbook.yaml",
-                        inventory: "inventory.ini",
-                        extras: "--private-key=$ANSIBLE_PRIVATE_KEY -u jenkins"
-                    )
+    agent any
+    environment {
+        DOCKER_HUB_CREDENTIALS=credentials('sukanya996')
+        ANSIBLE_PRIVATE_KEY=credentials('ansibe')
+    }
+    stages {
+        stage("Build docker image"){
+            steps {
+                script {
+                    sh "docker build -t flask-app:latest ./app"
                 }
             }
-            
+        }
+        stage("Login to docker hub"){
+            steps{
+                script {
+                    sh 'docker login -u "sukanya996" -p "docker123"'
+                }
+            }
+        }
+        stage("Push image to dcker hub"){
+            steps {
+                script {
+                    sh "docker tag flask-app:latest sukanya996/flask-app"
+                    sh "docker push sukanya996/flask-app"
+
+                }
+            }
+        }
+        stage("Run playbook"){
+            steps {
+                ansiblePlaybook(
+                    credentialsId: "ansible",
+                    inventory: "inventory.ini",
+                    extras: "--private-key=$ANSIBLE_PRIVATE_KEY -u jenkins"
+                )                
+            }
         }
     }
+}
+
