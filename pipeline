@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        DOCKER_HUB_CREDENTIALS=credentials('sukanya996')
         ANSIBLE_PRIVATE_KEY=credentials('ansible')
     }
     stages {
