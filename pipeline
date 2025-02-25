@@ -31,7 +31,7 @@ pipeline {
         stage("Run playbook"){
             steps {
                 ansiblePlaybook(
-                    playbook: 'playbook.yaml'
+                    playbook: 'playbook.yaml',
                     inventory: "inventory.ini",
                     extras: "--private-key=$ANSIBLE_PRIVATE_KEY -u jenkins"
                 )                
