@@ -36,4 +36,4 @@
       command: docker pull sukanya996/flask-app:latest
       
     - name: Run Docker Container
-      command: docker run -d --restart always -p 5000:5000 --name flask-app-container1 sukanya996/flask-app:latest 
+      command: docker run -d --restart always -p 5000:5000 --name flask1 sukanya996/flask-app:latest 
