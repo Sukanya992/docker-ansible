@@ -32,9 +32,6 @@
         groups: docker
         append: yes
 
-    - name: Ensure Docker group changes take effect
-      command: newgrp docker
-
     - name: Pull Docker Image from Docker Hub
       command: docker pull sukanya996/flask-app:latest
       
