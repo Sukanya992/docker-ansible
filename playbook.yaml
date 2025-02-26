@@ -35,10 +35,8 @@
     - name: Ensure Docker group changes take effect
       command: newgrp docker
 
-    - name: Build Docker Image
-      command: docker build -t sukanya996/flask-app:latest .
-      args:
-        chdir: /path/to/app-directory
-
+    - name: Pull Docker Image from Docker Hub
+      command: docker pull sukanya996/flask-app:latest
+      
     - name: Run Docker Container
       command: docker run -d -p 5000:5000 --name flask-app-container sukanya996/flask-app:latest
